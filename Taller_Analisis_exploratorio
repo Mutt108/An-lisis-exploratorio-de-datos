@@ -1,0 +1,632 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "provenance": [],
+      "authorship_tag": "ABX9TyMIGDqZrCeaLadNGLzuXMdP",
+      "include_colab_link": true
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    },
+    "language_info": {
+      "name": "python"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "view-in-github",
+        "colab_type": "text"
+      },
+      "source": [
+        "<a href=\"https://colab.research.google.com/github/Mutt108/An-lisis-exploratorio-de-datos/blob/main/Taller_Analisis_exploratorio\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": null,
+      "metadata": {
+        "id": "pvh7Q3cMpYAU"
+      },
+      "outputs": [],
+      "source": [
+        "file = \"https://raw.githubusercontent.com/rfordatascience/tidytuesday/refs/heads/main/data/2024/2024-10-22/cia_factbook.csv\"\n",
+        "\n",
+        "import pandas as pd\n",
+        "import numpy as np\n",
+        "import matplotlib.pyplot as plt\n",
+        "import seaborn as sns\n",
+        "df_cia = pd.read_csv(file)\n"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "df_cia\n",
+        "\n",
+        "print(df_cia.shape)"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "qcnTLVllrf-h",
+        "outputId": "d3e63ff8-e0aa-4d7e-8ee7-d9b6c5177f1a"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "(259, 11)\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "df_cia.info()"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "8RHdv5ubuCm_",
+        "outputId": "4c62b71e-89c1-46b3-eeda-f0a636d5485b"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "<class 'pandas.core.frame.DataFrame'>\n",
+            "RangeIndex: 259 entries, 0 to 258\n",
+            "Data columns (total 11 columns):\n",
+            " #   Column                   Non-Null Count  Dtype  \n",
+            "---  ------                   --------------  -----  \n",
+            " 0   country                  259 non-null    object \n",
+            " 1   area                     257 non-null    float64\n",
+            " 2   birth_rate               224 non-null    float64\n",
+            " 3   death_rate               225 non-null    float64\n",
+            " 4   infant_mortality_rate    224 non-null    float64\n",
+            " 5   internet_users           213 non-null    float64\n",
+            " 6   life_exp_at_birth        224 non-null    float64\n",
+            " 7   maternal_mortality_rate  184 non-null    float64\n",
+            " 8   net_migration_rate       222 non-null    float64\n",
+            " 9   population               238 non-null    float64\n",
+            " 10  population_growth_rate   233 non-null    float64\n",
+            "dtypes: float64(10), object(1)\n",
+            "memory usage: 22.4+ KB\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "df_max = df_cia['] == df_cia['internet_users'].max() & df_cia[death]]"
+      ],
+      "metadata": {
+        "id": "7f0imqJExp1i"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "\n",
+        "print(df_max[['country', 'internet_users']])"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "089-2MTlyZUi",
+        "outputId": "90ee041d-73da-42ad-8621-539ad7fdf48c"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "  country  internet_users\n",
+            "3   China     389000000.0\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "419ea8a0",
+        "outputId": "21dd8fd4-a580-467e-e380-144da780139f"
+      },
+      "source": [
+        "\n",
+        "\n",
+        "pais_mayor_tasa_mortalidad_materna = df_maternal_clean.loc[df_maternal_clean['maternal_mortality_rate'].idxmax()]\n",
+        "\n",
+        "print(pais_mayor_tasa_mortalidad_materna['country'] , (country_highest_maternal_mortality['maternal_mortality_rate']))"
+      ],
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "South Sudan 2054.0\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "037b45a4",
+        "outputId": "cf03f736-11a4-414a-8683-3bdb77835e29"
+      },
+      "source": [
+        "pais_tasa_mayor_mortalidad = df_death_rate_clean.loc[df_death_rate_clean['death_rate'].idxmax()]\n",
+        "\n",
+        "print(pais_tasa_mayor_mortalidad['country'] , (country_highest_death_rate['death_rate']))"
+      ],
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "South Africa 17.49\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "df_cia[\"density\"] = df_cia[\"population\"]/df_cia[\"area\"]\n",
+        "df_cia.head()\n",
+        "\n"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/",
+          "height": 206
+        },
+        "id": "DXj75vMz7X7z",
+        "outputId": "d7ed66a5-4c75-4bc3-c5f9-9ca0e44ecfcb"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "         country        area  birth_rate  death_rate  infant_mortality_rate  \\\n",
+              "0         Russia  17098242.0       11.87       13.83                   7.08   \n",
+              "1         Canada   9984670.0       10.29        8.31                   4.71   \n",
+              "2  United States   9826675.0       13.42        8.15                   6.17   \n",
+              "3          China   9596960.0       12.17        7.44                  14.79   \n",
+              "4         Brazil   8514877.0       14.72        6.54                  19.21   \n",
+              "\n",
+              "   internet_users  life_exp_at_birth  maternal_mortality_rate  \\\n",
+              "0      40853000.0              70.16                     34.0   \n",
+              "1      26960000.0              81.67                     12.0   \n",
+              "2     245000000.0              79.56                     21.0   \n",
+              "3     389000000.0              75.15                     37.0   \n",
+              "4      75982000.0              73.28                     56.0   \n",
+              "\n",
+              "   net_migration_rate    population  population_growth_rate     density  \n",
+              "0                1.69  1.424703e+08                   -0.03    8.332451  \n",
+              "1                5.66  3.483484e+07                    0.76    3.488832  \n",
+              "2                2.45  3.188921e+08                    0.77   32.451679  \n",
+              "3               -0.32  1.355693e+09                    0.44  141.262710  \n",
+              "4               -0.15  2.026568e+08                    0.80   23.800319  "
+            ],
+            "text/html": [
+              "\n",
+              "  <div id=\"df-03233ba6-bb07-4ca7-89a0-edb507520fbe\" class=\"colab-df-container\">\n",
+              "    <div>\n",
+              "<style scoped>\n",
+              "    .dataframe tbody tr th:only-of-type {\n",
+              "        vertical-align: middle;\n",
+              "    }\n",
+              "\n",
+              "    .dataframe tbody tr th {\n",
+              "        vertical-align: top;\n",
+              "    }\n",
+              "\n",
+              "    .dataframe thead th {\n",
+              "        text-align: right;\n",
+              "    }\n",
+              "</style>\n",
+              "<table border=\"1\" class=\"dataframe\">\n",
+              "  <thead>\n",
+              "    <tr style=\"text-align: right;\">\n",
+              "      <th></th>\n",
+              "      <th>country</th>\n",
+              "      <th>area</th>\n",
+              "      <th>birth_rate</th>\n",
+              "      <th>death_rate</th>\n",
+              "      <th>infant_mortality_rate</th>\n",
+              "      <th>internet_users</th>\n",
+              "      <th>life_exp_at_birth</th>\n",
+              "      <th>maternal_mortality_rate</th>\n",
+              "      <th>net_migration_rate</th>\n",
+              "      <th>population</th>\n",
+              "      <th>population_growth_rate</th>\n",
+              "      <th>density</th>\n",
+              "    </tr>\n",
+              "  </thead>\n",
+              "  <tbody>\n",
+              "    <tr>\n",
+              "      <th>0</th>\n",
+              "      <td>Russia</td>\n",
+              "      <td>17098242.0</td>\n",
+              "      <td>11.87</td>\n",
+              "      <td>13.83</td>\n",
+              "      <td>7.08</td>\n",
+              "      <td>40853000.0</td>\n",
+              "      <td>70.16</td>\n",
+              "      <td>34.0</td>\n",
+              "      <td>1.69</td>\n",
+              "      <td>1.424703e+08</td>\n",
+              "      <td>-0.03</td>\n",
+              "      <td>8.332451</td>\n",
+              "    </tr>\n",
+              "    <tr>\n",
+              "      <th>1</th>\n",
+              "      <td>Canada</td>\n",
+              "      <td>9984670.0</td>\n",
+              "      <td>10.29</td>\n",
+              "      <td>8.31</td>\n",
+              "      <td>4.71</td>\n",
+              "      <td>26960000.0</td>\n",
+              "      <td>81.67</td>\n",
+              "      <td>12.0</td>\n",
+              "      <td>5.66</td>\n",
+              "      <td>3.483484e+07</td>\n",
+              "      <td>0.76</td>\n",
+              "      <td>3.488832</td>\n",
+              "    </tr>\n",
+              "    <tr>\n",
+              "      <th>2</th>\n",
+              "      <td>United States</td>\n",
+              "      <td>9826675.0</td>\n",
+              "      <td>13.42</td>\n",
+              "      <td>8.15</td>\n",
+              "      <td>6.17</td>\n",
+              "      <td>245000000.0</td>\n",
+              "      <td>79.56</td>\n",
+              "      <td>21.0</td>\n",
+              "      <td>2.45</td>\n",
+              "      <td>3.188921e+08</td>\n",
+              "      <td>0.77</td>\n",
+              "      <td>32.451679</td>\n",
+              "    </tr>\n",
+              "    <tr>\n",
+              "      <th>3</th>\n",
+              "      <td>China</td>\n",
+              "      <td>9596960.0</td>\n",
+              "      <td>12.17</td>\n",
+              "      <td>7.44</td>\n",
+              "      <td>14.79</td>\n",
+              "      <td>389000000.0</td>\n",
+              "      <td>75.15</td>\n",
+              "      <td>37.0</td>\n",
+              "      <td>-0.32</td>\n",
+              "      <td>1.355693e+09</td>\n",
+              "      <td>0.44</td>\n",
+              "      <td>141.262710</td>\n",
+              "    </tr>\n",
+              "    <tr>\n",
+              "      <th>4</th>\n",
+              "      <td>Brazil</td>\n",
+              "      <td>8514877.0</td>\n",
+              "      <td>14.72</td>\n",
+              "      <td>6.54</td>\n",
+              "      <td>19.21</td>\n",
+              "      <td>75982000.0</td>\n",
+              "      <td>73.28</td>\n",
+              "      <td>56.0</td>\n",
+              "      <td>-0.15</td>\n",
+              "      <td>2.026568e+08</td>\n",
+              "      <td>0.80</td>\n",
+              "      <td>23.800319</td>\n",
+              "    </tr>\n",
+              "  </tbody>\n",
+              "</table>\n",
+              "</div>\n",
+              "    <div class=\"colab-df-buttons\">\n",
+              "\n",
+              "  <div class=\"colab-df-container\">\n",
+              "    <button class=\"colab-df-convert\" onclick=\"convertToInteractive('df-03233ba6-bb07-4ca7-89a0-edb507520fbe')\"\n",
+              "            title=\"Convert this dataframe to an interactive table.\"\n",
+              "            style=\"display:none;\">\n",
+              "\n",
+              "  <svg xmlns=\"http://www.w3.org/2000/svg\" height=\"24px\" viewBox=\"0 -960 960 960\">\n",
+              "    <path d=\"M120-120v-720h720v720H120Zm60-500h600v-160H180v160Zm220 220h160v-160H400v160Zm0 220h160v-160H400v160ZM180-400h160v-160H180v160Zm440 0h160v-160H620v160ZM180-180h160v-160H180v160Zm440 0h160v-160H620v160Z\"/>\n",
+              "  </svg>\n",
+              "    </button>\n",
+              "\n",
+              "  <style>\n",
+              "    .colab-df-container {\n",
+              "      display:flex;\n",
+              "      gap: 12px;\n",
+              "    }\n",
+              "\n",
+              "    .colab-df-convert {\n",
+              "      background-color: #E8F0FE;\n",
+              "      border: none;\n",
+              "      border-radius: 50%;\n",
+              "      cursor: pointer;\n",
+              "      display: none;\n",
+              "      fill: #1967D2;\n",
+              "      height: 32px;\n",
+              "      padding: 0 0 0 0;\n",
+              "      width: 32px;\n",
+              "    }\n",
+              "\n",
+              "    .colab-df-convert:hover {\n",
+              "      background-color: #E2EBFA;\n",
+              "      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);\n",
+              "      fill: #174EA6;\n",
+              "    }\n",
+              "\n",
+              "    .colab-df-buttons div {\n",
+              "      margin-bottom: 4px;\n",
+              "    }\n",
+              "\n",
+              "    [theme=dark] .colab-df-convert {\n",
+              "      background-color: #3B4455;\n",
+              "      fill: #D2E3FC;\n",
+              "    }\n",
+              "\n",
+              "    [theme=dark] .colab-df-convert:hover {\n",
+              "      background-color: #434B5C;\n",
+              "      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);\n",
+              "      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));\n",
+              "      fill: #FFFFFF;\n",
+              "    }\n",
+              "  </style>\n",
+              "\n",
+              "    <script>\n",
+              "      const buttonEl =\n",
+              "        document.querySelector('#df-03233ba6-bb07-4ca7-89a0-edb507520fbe button.colab-df-convert');\n",
+              "      buttonEl.style.display =\n",
+              "        google.colab.kernel.accessAllowed ? 'block' : 'none';\n",
+              "\n",
+              "      async function convertToInteractive(key) {\n",
+              "        const element = document.querySelector('#df-03233ba6-bb07-4ca7-89a0-edb507520fbe');\n",
+              "        const dataTable =\n",
+              "          await google.colab.kernel.invokeFunction('convertToInteractive',\n",
+              "                                                    [key], {});\n",
+              "        if (!dataTable) return;\n",
+              "\n",
+              "        const docLinkHtml = 'Like what you see? Visit the ' +\n",
+              "          '<a target=\"_blank\" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'\n",
+              "          + ' to learn more about interactive tables.';\n",
+              "        element.innerHTML = '';\n",
+              "        dataTable['output_type'] = 'display_data';\n",
+              "        await google.colab.output.renderOutput(dataTable, element);\n",
+              "        const docLink = document.createElement('div');\n",
+              "        docLink.innerHTML = docLinkHtml;\n",
+              "        element.appendChild(docLink);\n",
+              "      }\n",
+              "    </script>\n",
+              "  </div>\n",
+              "\n",
+              "\n",
+              "    </div>\n",
+              "  </div>\n"
+            ],
+            "application/vnd.google.colaboratory.intrinsic+json": {
+              "type": "dataframe",
+              "variable_name": "df_cia",
+              "repr_error": "Out of range float values are not JSON compliant: inf"
+            }
+          },
+          "metadata": {},
+          "execution_count": 72
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "df_cia[\"internet_penetration\"] = df_cia[\"internet_users\"]/df_cia[\"population\"]\n",
+        "\n",
+        "df_cia[df_cia[\"internet_penetration\"] == df_cia[\"internet_penetration\"].max()]"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/",
+          "height": 81
+        },
+        "id": "3NZ33D_N73tq",
+        "outputId": "bb826504-ccac-4304-b7c8-88dafc5a1daf"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "     country      area  birth_rate  death_rate  infant_mortality_rate  \\\n",
+              "107  Iceland  103000.0       13.09        7.13                   3.15   \n",
+              "\n",
+              "     internet_users  life_exp_at_birth  maternal_mortality_rate  \\\n",
+              "107        301600.0              81.22                      5.0   \n",
+              "\n",
+              "     net_migration_rate  population  population_growth_rate   density  \\\n",
+              "107                0.52    317351.0                    0.65  3.081078   \n",
+              "\n",
+              "     internet_penetration  \n",
+              "107              0.950367  "
+            ],
+            "text/html": [
+              "\n",
+              "  <div id=\"df-9bd3cded-0a64-42c5-a34b-6303de884dc7\" class=\"colab-df-container\">\n",
+              "    <div>\n",
+              "<style scoped>\n",
+              "    .dataframe tbody tr th:only-of-type {\n",
+              "        vertical-align: middle;\n",
+              "    }\n",
+              "\n",
+              "    .dataframe tbody tr th {\n",
+              "        vertical-align: top;\n",
+              "    }\n",
+              "\n",
+              "    .dataframe thead th {\n",
+              "        text-align: right;\n",
+              "    }\n",
+              "</style>\n",
+              "<table border=\"1\" class=\"dataframe\">\n",
+              "  <thead>\n",
+              "    <tr style=\"text-align: right;\">\n",
+              "      <th></th>\n",
+              "      <th>country</th>\n",
+              "      <th>area</th>\n",
+              "      <th>birth_rate</th>\n",
+              "      <th>death_rate</th>\n",
+              "      <th>infant_mortality_rate</th>\n",
+              "      <th>internet_users</th>\n",
+              "      <th>life_exp_at_birth</th>\n",
+              "      <th>maternal_mortality_rate</th>\n",
+              "      <th>net_migration_rate</th>\n",
+              "      <th>population</th>\n",
+              "      <th>population_growth_rate</th>\n",
+              "      <th>density</th>\n",
+              "      <th>internet_penetration</th>\n",
+              "    </tr>\n",
+              "  </thead>\n",
+              "  <tbody>\n",
+              "    <tr>\n",
+              "      <th>107</th>\n",
+              "      <td>Iceland</td>\n",
+              "      <td>103000.0</td>\n",
+              "      <td>13.09</td>\n",
+              "      <td>7.13</td>\n",
+              "      <td>3.15</td>\n",
+              "      <td>301600.0</td>\n",
+              "      <td>81.22</td>\n",
+              "      <td>5.0</td>\n",
+              "      <td>0.52</td>\n",
+              "      <td>317351.0</td>\n",
+              "      <td>0.65</td>\n",
+              "      <td>3.081078</td>\n",
+              "      <td>0.950367</td>\n",
+              "    </tr>\n",
+              "  </tbody>\n",
+              "</table>\n",
+              "</div>\n",
+              "    <div class=\"colab-df-buttons\">\n",
+              "\n",
+              "  <div class=\"colab-df-container\">\n",
+              "    <button class=\"colab-df-convert\" onclick=\"convertToInteractive('df-9bd3cded-0a64-42c5-a34b-6303de884dc7')\"\n",
+              "            title=\"Convert this dataframe to an interactive table.\"\n",
+              "            style=\"display:none;\">\n",
+              "\n",
+              "  <svg xmlns=\"http://www.w3.org/2000/svg\" height=\"24px\" viewBox=\"0 -960 960 960\">\n",
+              "    <path d=\"M120-120v-720h720v720H120Zm60-500h600v-160H180v160Zm220 220h160v-160H400v160Zm0 220h160v-160H400v160ZM180-400h160v-160H180v160Zm440 0h160v-160H620v160ZM180-180h160v-160H180v160Zm440 0h160v-160H620v160Z\"/>\n",
+              "  </svg>\n",
+              "    </button>\n",
+              "\n",
+              "  <style>\n",
+              "    .colab-df-container {\n",
+              "      display:flex;\n",
+              "      gap: 12px;\n",
+              "    }\n",
+              "\n",
+              "    .colab-df-convert {\n",
+              "      background-color: #E8F0FE;\n",
+              "      border: none;\n",
+              "      border-radius: 50%;\n",
+              "      cursor: pointer;\n",
+              "      display: none;\n",
+              "      fill: #1967D2;\n",
+              "      height: 32px;\n",
+              "      padding: 0 0 0 0;\n",
+              "      width: 32px;\n",
+              "    }\n",
+              "\n",
+              "    .colab-df-convert:hover {\n",
+              "      background-color: #E2EBFA;\n",
+              "      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);\n",
+              "      fill: #174EA6;\n",
+              "    }\n",
+              "\n",
+              "    .colab-df-buttons div {\n",
+              "      margin-bottom: 4px;\n",
+              "    }\n",
+              "\n",
+              "    [theme=dark] .colab-df-convert {\n",
+              "      background-color: #3B4455;\n",
+              "      fill: #D2E3FC;\n",
+              "    }\n",
+              "\n",
+              "    [theme=dark] .colab-df-convert:hover {\n",
+              "      background-color: #434B5C;\n",
+              "      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);\n",
+              "      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));\n",
+              "      fill: #FFFFFF;\n",
+              "    }\n",
+              "  </style>\n",
+              "\n",
+              "    <script>\n",
+              "      const buttonEl =\n",
+              "        document.querySelector('#df-9bd3cded-0a64-42c5-a34b-6303de884dc7 button.colab-df-convert');\n",
+              "      buttonEl.style.display =\n",
+              "        google.colab.kernel.accessAllowed ? 'block' : 'none';\n",
+              "\n",
+              "      async function convertToInteractive(key) {\n",
+              "        const element = document.querySelector('#df-9bd3cded-0a64-42c5-a34b-6303de884dc7');\n",
+              "        const dataTable =\n",
+              "          await google.colab.kernel.invokeFunction('convertToInteractive',\n",
+              "                                                    [key], {});\n",
+              "        if (!dataTable) return;\n",
+              "\n",
+              "        const docLinkHtml = 'Like what you see? Visit the ' +\n",
+              "          '<a target=\"_blank\" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'\n",
+              "          + ' to learn more about interactive tables.';\n",
+              "        element.innerHTML = '';\n",
+              "        dataTable['output_type'] = 'display_data';\n",
+              "        await google.colab.output.renderOutput(dataTable, element);\n",
+              "        const docLink = document.createElement('div');\n",
+              "        docLink.innerHTML = docLinkHtml;\n",
+              "        element.appendChild(docLink);\n",
+              "      }\n",
+              "    </script>\n",
+              "  </div>\n",
+              "\n",
+              "\n",
+              "    </div>\n",
+              "  </div>\n"
+            ],
+            "application/vnd.google.colaboratory.intrinsic+json": {
+              "type": "dataframe",
+              "summary": "{\n  \"name\": \"df_cia[df_cia[\\\"internet_penetration\\\"] == df_cia[\\\"internet_penetration\\\"]\",\n  \"rows\": 1,\n  \"fields\": [\n    {\n      \"column\": \"country\",\n      \"properties\": {\n        \"dtype\": \"string\",\n        \"num_unique_values\": 1,\n        \"samples\": [\n          \"Iceland\"\n        ],\n        \"semantic_type\": \"\",\n        \"description\": \"\"\n      }\n    },\n    {\n      \"column\": \"area\",\n      \"properties\": {\n        \"dtype\": \"number\",\n        \"std\": null,\n        \"min\": 103000.0,\n        \"max\": 103000.0,\n        \"num_unique_values\": 1,\n        \"samples\": [\n          103000.0\n        ],\n        \"semantic_type\": \"\",\n        \"description\": \"\"\n      }\n    },\n    {\n      \"column\": \"birth_rate\",\n      \"properties\": {\n        \"dtype\": \"number\",\n        \"std\": null,\n        \"min\": 13.09,\n        \"max\": 13.09,\n        \"num_unique_values\": 1,\n        \"samples\": [\n          13.09\n        ],\n        \"semantic_type\": \"\",\n        \"description\": \"\"\n      }\n    },\n    {\n      \"column\": \"death_rate\",\n      \"properties\": {\n        \"dtype\": \"number\",\n        \"std\": null,\n        \"min\": 7.13,\n        \"max\": 7.13,\n        \"num_unique_values\": 1,\n        \"samples\": [\n          7.13\n        ],\n        \"semantic_type\": \"\",\n        \"description\": \"\"\n      }\n    },\n    {\n      \"column\": \"infant_mortality_rate\",\n      \"properties\": {\n        \"dtype\": \"number\",\n        \"std\": null,\n        \"min\": 3.15,\n        \"max\": 3.15,\n        \"num_unique_values\": 1,\n        \"samples\": [\n          3.15\n        ],\n        \"semantic_type\": \"\",\n        \"description\": \"\"\n      }\n    },\n    {\n      \"column\": \"internet_users\",\n      \"properties\": {\n        \"dtype\": \"number\",\n        \"std\": null,\n        \"min\": 301600.0,\n        \"max\": 301600.0,\n        \"num_unique_values\": 1,\n        \"samples\": [\n          301600.0\n        ],\n        \"semantic_type\": \"\",\n        \"description\": \"\"\n      }\n    },\n    {\n      \"column\": \"life_exp_at_birth\",\n      \"properties\": {\n        \"dtype\": \"number\",\n        \"std\": null,\n        \"min\": 81.22,\n        \"max\": 81.22,\n        \"num_unique_values\": 1,\n        \"samples\": [\n          81.22\n        ],\n        \"semantic_type\": \"\",\n        \"description\": \"\"\n      }\n    },\n    {\n      \"column\": \"maternal_mortality_rate\",\n      \"properties\": {\n        \"dtype\": \"number\",\n        \"std\": null,\n        \"min\": 5.0,\n        \"max\": 5.0,\n        \"num_unique_values\": 1,\n        \"samples\": [\n          5.0\n        ],\n        \"semantic_type\": \"\",\n        \"description\": \"\"\n      }\n    },\n    {\n      \"column\": \"net_migration_rate\",\n      \"properties\": {\n        \"dtype\": \"number\",\n        \"std\": null,\n        \"min\": 0.52,\n        \"max\": 0.52,\n        \"num_unique_values\": 1,\n        \"samples\": [\n          0.52\n        ],\n        \"semantic_type\": \"\",\n        \"description\": \"\"\n      }\n    },\n    {\n      \"column\": \"population\",\n      \"properties\": {\n        \"dtype\": \"number\",\n        \"std\": null,\n        \"min\": 317351.0,\n        \"max\": 317351.0,\n        \"num_unique_values\": 1,\n        \"samples\": [\n          317351.0\n        ],\n        \"semantic_type\": \"\",\n        \"description\": \"\"\n      }\n    },\n    {\n      \"column\": \"population_growth_rate\",\n      \"properties\": {\n        \"dtype\": \"number\",\n        \"std\": null,\n        \"min\": 0.65,\n        \"max\": 0.65,\n        \"num_unique_values\": 1,\n        \"samples\": [\n          0.65\n        ],\n        \"semantic_type\": \"\",\n        \"description\": \"\"\n      }\n    },\n    {\n      \"column\": \"density\",\n      \"properties\": {\n        \"dtype\": \"number\",\n        \"std\": null,\n        \"min\": 3.0810776699029128,\n        \"max\": 3.0810776699029128,\n        \"num_unique_values\": 1,\n        \"samples\": [\n          3.0810776699029128\n        ],\n        \"semantic_type\": \"\",\n        \"description\": \"\"\n      }\n    },\n    {\n      \"column\": \"internet_penetration\",\n      \"properties\": {\n        \"dtype\": \"number\",\n        \"std\": null,\n        \"min\": 0.9503672589656248,\n        \"max\": 0.9503672589656248,\n        \"num_unique_values\": 1,\n        \"samples\": [\n          0.9503672589656248\n        ],\n        \"semantic_type\": \"\",\n        \"description\": \"\"\n      }\n    }\n  ]\n}"
+            }
+          },
+          "metadata": {},
+          "execution_count": 74
+        }
+      ]
+    }
+  ]
+}
